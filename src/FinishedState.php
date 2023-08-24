@@ -6,7 +6,7 @@ class FinishedState implements GameStateInterface
 {
     private string $description;
 
-    public function handle(Player $player, Slot $slot): void
+    public function handle(PlayerInterface $player, Slot $slot): void
     {
         // fazer o que precisa ser feito
     }

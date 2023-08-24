@@ -6,7 +6,7 @@ class GameController
 {
     private GameState $state;
     private $slots = [];
-    private Player $player;
+    private PlayerInterface $player;
 
     public function __construct(ReadyState $gameState)
     {
@@ -18,7 +18,7 @@ class GameController
         $this->state = $newState;
     }
 
-    public function play(Player $player, Slot $slot): void
+    public function play(PlayerInterface $player, Slot $slot): void
     {
         //
     }
@@ -28,7 +28,7 @@ class GameController
         //
     }
 
-    public function changePlayer(Player $player): void
+    public function changePlayer(PlayerInterface $player): void
     {
         //
     }
