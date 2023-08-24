@@ -7,12 +7,12 @@ class HumanPlayer implements PlayerInterface{
     private string $name;
     private string $icon;
 
-    public function __construct(String $name){
+    public function __construct(string $name){
         $this->name = $name;
         $this->icon = "X";
     }
-    public function draw(Slot $slot){
-        //Draw
+    public function draw(AbstractSlot $slot){
+        $slot->setIcon($this->icon);
     }
 
     public function getIcon(): string{

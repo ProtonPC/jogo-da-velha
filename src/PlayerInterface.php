@@ -3,7 +3,7 @@
 namespace App;
 interface PlayerInterface {
 
-    public function draw(Slot $slot);
+    public function draw(AbstractSlot $slot);
 
     public function getIcon(): string;
 }
