@@ -2,12 +2,11 @@
 
 namespace App;
 
-class HumanPlayer implements PlayerInterface{
+class HumanPlayer extends AbstractPlayer
+{
 
-    private string $name;
-    private string $icon;
-
-    public function __construct(string $name){
+    public function __construct(string $name)
+    {
         $this->name = $name;
         $this->icon = "X";
     }
@@ -15,16 +14,7 @@ class HumanPlayer implements PlayerInterface{
         $slot->setIcon($this->icon);
     }
 
-    public function getIcon(): string{
-        return $this->icon;
-    }
-
     public function setName(string $name){
         $this->name = $name;
     }
-
-    public function getName(): string{
-        return $this->name;
-    }
-
 }
