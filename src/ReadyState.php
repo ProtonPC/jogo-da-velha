@@ -6,9 +6,15 @@ class ReadyState implements PlayerStateInterface
 {
     private string $description;
 
-    public function handle(PlayerInterface $player, AbstractSlot $slot): void
+    public function __construct()
     {
-        // fazer o que precisa ser feito
+        $this->description = "Player ready";
+    }
+
+    public function handle(AbstractPlayer $player, AbstractSlot $slot): void
+    {
+        $player->setState(new ReadyState());
+        
     }
 
     public function getDescription(): string

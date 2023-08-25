@@ -6,9 +6,14 @@ class PlayingState implements PlayerStateInterface
 {
     private string $description;
 
-    public function handle(PlayerInterface $player, AbstractSlot $slot): void
+    public function __construct()
     {
-        // fazer o que precisa ser feito
+        $this->description = "Player active";
+    }
+
+    public function handle(AbstractPlayer $player, AbstractSlot $slot): void
+    {
+        $player->setState(new PlayingState());
     }
 
     public function getDescription(): string
