@@ -4,31 +4,20 @@ namespace App;
 
 class GameController
 {
-    private GameState $state;
-    private $slots = [];
-    private PlayerInterface $player;
+    private AbstractSlot $slot;
+    private AbstractPlayer $player;
 
-    public function __construct(ReadyState $gameState)
+    public function __construct(AbstractPlayer $player, AbstractSlot $slot)
     {
-        $this->state = $gameState;
+            //
     }
     
-    public function changeState(GameState $newState): void
-    {
-        $this->state = $newState;
-    }
-
-    public function play(PlayerInterface $player, Slot $slot): void
+    public function play(AbstractPlayer $player, AbstractSlot $slot): void
     {
         //
     }
 
-    public function checkWinner(): void
-    {
-        //
-    }
-
-    public function changePlayer(PlayerInterface $player): void
+    public function changePlayer(AbstractPlayer $player): void
     {
         //
     }

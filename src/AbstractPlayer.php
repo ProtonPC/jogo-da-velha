@@ -20,11 +20,11 @@ abstract class AbstractPlayer
         $this->state = $playerState;
     }
 
-    protected function __construct(string $name)
-    {
-        $this->name = $name;
-        $this->icon = "X";
-    }
+    // protected function __construct(string $name)
+    // {
+    //     $this->name = $name;
+    //     $this->icon = "X";
+    // }
     public function getIcon(): string
     {
         return $this->icon;
