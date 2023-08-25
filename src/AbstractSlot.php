@@ -2,7 +2,8 @@
 
 namespace App;
 
-abstract class AbstractSlot {
+abstract class AbstractSlot 
+{
     private int $x;
     private string $icon;
 
