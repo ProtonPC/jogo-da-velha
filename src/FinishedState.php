@@ -2,11 +2,11 @@
 
 namespace App;
 
-class FinishedState implements GameStateInterface
+class FinishedState implements PlayerStateInterface
 {
     private string $description;
 
-    public function handle(PlayerInterface $player, Slot $slot): void
+    public function handle(PlayerInterface $player, AbstractSlot $slot): void
     {
         // fazer o que precisa ser feito
     }
