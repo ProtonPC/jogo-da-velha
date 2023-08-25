@@ -2,14 +2,22 @@
 
 namespace App;
 
-abstract class AbstractSlot 
-{
-    private int $x;
-    private string $icon;
+abstract class AbstractSlot {
+    protected int $x;
+    protected string $icon;
 
-    public abstract function isEmpty(): bool;
+    public function isEmpty(): bool
+    {
+        return !empty($this->icon);
+    }
+   
+    public function setIcon(string $icon): void
+    {
+        $this->icon = $icon;
+    }
 
-    public abstract function setIcon(string $icon): void;
-
-    public abstract function getX(): string;
+    public function getX(): string
+    {
+        return $this->x;
+    }
 }
