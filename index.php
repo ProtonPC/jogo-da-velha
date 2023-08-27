@@ -13,77 +13,95 @@
 <body>
     <div class="flex justify-center h-screen">
         <div class="grid content-center">
-            <h1 class="text-5xl">Jogo da Velha</h1>
+            <h1 class="text-5xl text-center">Jogo da Velha</h1>
             <div class="flex justify-center">
-                <div class="border-solid border-2 border-sky-500 p-5 m-5">
-                <div class="flex p-3 m-3">
-                        <div class="px-3">
-                            <a href="?x=0">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                <div class="p-5 m-5">
+                    <div class="flex">
+                        <a href="?x=0">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0 border-l-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="px-3">
-                            <a href="?x=1">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                            </div>
+                        </a>
+                        <a href="?x=1">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="px-3">
-                            <a href="?x=2">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                            </div>
+                        </a>
+                        <a href="?x=2">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0 border-r-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="flex p-3 m-3">
-                        <div class="px-3">
-                            <a href="?x=3">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                    <div class="flex">
+                        <a href="?x=3">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-l-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="px-3">
-                            <a href="?x=4">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                            </div>
+                        </a>
+                        <a href="?x=4">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="px-3">
-                            <a href="?x=5">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                            </div>
+                        </a>
+                        <a href="?x=5">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-r-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="flex p-3 m-3">
-                        <div class="px-3">
-                            <a href="?x=6">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                    <div class="flex">
+                        <a href="?x=6">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0 border-l-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="px-3">
-                            <a href="?x=7">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                            </div>
+                        </a>
+                        <a href="?x=7">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="px-3">
-                            <a href="?x=8">
-                                <div class="bg-black text-white">
-                                    guhijoiufyugh
+                            </div>
+                        </a>
+                        <a href="?x=8">
+                            <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0 border-r-0">
+                                <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
+                                    <div class="text-5xl">
+                                        A
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
