@@ -1,0 +1,27 @@
+{
+    "name": "proton/jogo-da-velha",
+    "description": "Amazing game using Design Patters",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bruno Oliveira",
+            "email": "bds.commus@gmail.com"
+        },
+        {
+            "name": "Jeová Aires",
+            "email": "emaildojeova@mail.com"
+        },
+        {
+            "name": "Alan",
+            "email": "emaildoalan@mail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}

@@ -1,4 +1,11 @@
 <?php
+require 'vendor/autoload.php';
+
+use App\Controllers\GameController;
+use App\Controllers\Player\ComputerPlayer;
+use App\Controllers\Slot\NullSlot;
+
+new GameController(new ComputerPlayer(), new NullSlot());
 
 ?>
 

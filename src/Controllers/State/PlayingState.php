@@ -1,6 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Controllers\State;
+
+use App\Controllers\Player\AbstractPlayer;
+use App\Controllers\Slot\AbstractSlot;
+use App\Interfaces\PlayerStateInterface;
 
 class PlayingState implements PlayerStateInterface
 {

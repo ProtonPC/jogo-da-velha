@@ -1,6 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Controllers\Player;
+
+use App\Controllers\Slot\AbstractSlot;
+use App\Interfaces\PlayerStateInterface;
 
 abstract class AbstractPlayer
 {
@@ -20,11 +23,6 @@ abstract class AbstractPlayer
         $this->state = $playerState;
     }
 
-    // protected function __construct(string $name)
-    // {
-    //     $this->name = $name;
-    //     $this->icon = "X";
-    // }
     public function getIcon(): string
     {
         return $this->icon;

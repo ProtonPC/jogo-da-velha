@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Controllers\Slot;
 
 abstract class AbstractSlot {
     protected int $x;

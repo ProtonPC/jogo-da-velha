@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App;
+namespace App\Controllers\Slot;
 
 class RealSlot extends AbstractSlot
 {

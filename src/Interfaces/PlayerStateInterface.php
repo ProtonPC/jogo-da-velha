@@ -1,6 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Interfaces;
+
+use App\Controllers\Player\AbstractPlayer;
+use App\Controllers\Slot\AbstractSlot;
 
 interface PlayerStateInterface
 {

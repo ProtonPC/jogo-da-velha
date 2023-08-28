@@ -1,6 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Controllers;
+
+use App\Controllers\Player\AbstractPlayer;
+use App\Controllers\Slot\AbstractSlot;
 
 class GameController
 {
@@ -9,7 +12,8 @@ class GameController
 
     public function __construct(AbstractPlayer $player, AbstractSlot $slot)
     {
-            //
+        var_dump($player, $slot);
+        die();
     }
     
     public function play(AbstractPlayer $player, AbstractSlot $slot): void

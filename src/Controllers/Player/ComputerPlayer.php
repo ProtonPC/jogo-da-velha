@@ -1,6 +1,8 @@
 <?php 
 
-namespace App;
+namespace App\Controllers\Player;
+
+use App\Controllers\Slot\AbstractSlot;
 
 class ComputerPlayer extends AbstractPlayer
 {
