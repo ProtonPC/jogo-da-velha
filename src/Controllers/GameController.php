@@ -3,27 +3,49 @@
 namespace App\Controllers;
 
 use App\Controllers\Player\AbstractPlayer;
+use App\Controllers\Player\ComputerPlayer;
+use App\Controllers\Player\HumanPlayer;
 use App\Controllers\Slot\AbstractSlot;
+use App\Controllers\Slot\NullSlot;
+use App\Controllers\State\ReadyState;
 
 class GameController
 {
-    private AbstractSlot $slot;
-    private AbstractPlayer $player;
+    public $slots;
+    private $players;
+    private bool $currentPlayer;
 
-    public function __construct(AbstractPlayer $player, AbstractSlot $slot)
+    public function __construct()
     {
-        var_dump($player, $slot);
-        die();
+        for($i = 0; $i < 9; $i++) {
+            $this->slots[$i] = new NullSlot($i);
+        }
+        
+        $computerPlayer = new ComputerPlayer();
+        $computerPlayer->setState(new ReadyState());
+
+        $humanPlayer = new HumanPlayer("Oponente do Daniel");
+        $humanPlayer->setState(new ReadyState());
+
+        $this->currentPlayer = 0;
+
+        $this->players = [
+            $humanPlayer,
+            $computerPlayer
+        ];
     }
     
     public function play(AbstractPlayer $player, AbstractSlot $slot): void
     {
-        //
+    }
+    
+    public function changePlayer(): void
+    {
+        $this->currentPlayer = !$this->currentPlayer;
     }
 
-    public function changePlayer(AbstractPlayer $player): void
+    public function getPlayer(): AbstractPlayer
     {
-        //
+        return $this->players[$this->currentPlayer];
     }
 }
-

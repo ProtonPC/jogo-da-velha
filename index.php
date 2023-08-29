@@ -1,11 +1,23 @@
 <?php
 require 'vendor/autoload.php';
+session_start();
 
 use App\Controllers\GameController;
-use App\Controllers\Player\ComputerPlayer;
-use App\Controllers\Slot\NullSlot;
 
-new GameController(new ComputerPlayer(), new NullSlot());
+$gameController = new GameController();
+
+if(isset($_SESSION['gameController'])) {
+    $gameControllerSerialized = $_SESSION['gameController'];
+    $gameController = unserialize($gameControllerSerialized);
+} else {
+    $gameControllerSerialized = serialize($gameController);
+    $_SESSION['gameController'] = $gameControllerSerialized;
+}
+
+$position = $_REQUEST['x'];
+if(!$gameController->slots[$position]?->isEmpty()) {
+    echo $gameController->slots[$position]?->setIcon($gameController->getPlayer()?->getIcon());
+}
 
 ?>
 
@@ -28,7 +40,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0 border-l-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[0]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +49,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[1]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +58,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0 border-r-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[2]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +69,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-l-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[3]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +78,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[4]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +87,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-r-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[5]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +98,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0 border-l-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[6]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +107,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[7]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +116,7 @@ new GameController(new ComputerPlayer(), new NullSlot());
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0 border-r-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        A
+                                        <?php echo $gameController->slots[8]->getIcon() ?>
                                     </div>
                                 </div>
                             </div>

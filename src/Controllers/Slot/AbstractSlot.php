@@ -16,6 +16,11 @@ abstract class AbstractSlot {
         $this->icon = $icon;
     }
 
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
     public function getX(): string
     {
         return $this->x;
