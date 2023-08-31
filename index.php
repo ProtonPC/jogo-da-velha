@@ -1,23 +1,23 @@
 <?php
 require 'vendor/autoload.php';
+
 session_start();
 
 use App\Controllers\GameController;
 
 $gameController = new GameController();
 
-if(isset($_SESSION['gameController'])) {
-    $gameControllerSerialized = $_SESSION['gameController'];
-    $gameController = unserialize($gameControllerSerialized);
+if(isset($_REQUEST['reset']) && $_REQUEST['reset'] == 1)
+{
+    $_SESSION = array();
 } else {
-    $gameControllerSerialized = serialize($gameController);
-    $_SESSION['gameController'] = $gameControllerSerialized;
+    $position = $_REQUEST['x'];
+    if(!(!isset($_SESSION['slots'][$position]) && !empty($_SESSION['slots'][$position]))) {
+        $gameController->slots[$position]?->setIcon($gameController->getPlayer()?->getIcon());
+        $_SESSION['slots'][$position] = $gameController->slots[$position]?->getIcon();
+    }
 }
-
-$position = $_REQUEST['x'];
-if(!$gameController->slots[$position]?->isEmpty()) {
-    echo $gameController->slots[$position]?->setIcon($gameController->getPlayer()?->getIcon());
-}
+$gameController->changePlayer();
 
 ?>
 
@@ -32,7 +32,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
 <body>
     <div class="flex justify-center h-screen">
         <div class="grid content-center">
+            <a class="text-5xl text-center" href="?reset=1">Reset Game</a>
             <h1 class="text-5xl text-center">Jogo da Velha</h1>
+            <h1 class="text-2xl text-center"><?php echo $gameController->getPlayer()?->getName(); ?></h1>
             <div class="flex justify-center">
                 <div class="p-5 m-5">
                     <div class="flex">
@@ -40,7 +42,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0 border-l-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[0]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][0]) echo $_SESSION['slots'][0];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +53,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[1]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][1]) echo $_SESSION['slots'][1];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +64,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-t-0 border-r-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[2]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][2]) echo $_SESSION['slots'][2];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +77,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-l-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[3]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][3]) echo $_SESSION['slots'][3];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +88,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[4]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][4]) echo $_SESSION['slots'][4];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +99,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-r-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[5]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][5]) echo $_SESSION['slots'][5];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +112,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0 border-l-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[6]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][6]) echo $_SESSION['slots'][6];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +123,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[7]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][7]) echo $_SESSION['slots'][7];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +134,9 @@ if(!$gameController->slots[$position]?->isEmpty()) {
                             <div class="border-solid border-2 border-indigo-950 h-32 w-32 border-b-0 border-r-0">
                                 <div class="flex justify-center items-center bg-blue-600 text-white h-full w-full">
                                     <div class="text-5xl">
-                                        <?php echo $gameController->slots[8]->getIcon() ?>
+                                        <?php 
+                                            if($_SESSION['slots'][8]) echo $_SESSION['slots'][8];
+                                        ?>
                                     </div>
                                 </div>
                             </div>

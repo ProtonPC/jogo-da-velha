@@ -27,7 +27,11 @@ class GameController
         $humanPlayer = new HumanPlayer("Oponente do Daniel");
         $humanPlayer->setState(new ReadyState());
 
-        $this->currentPlayer = 0;
+        if (!isset($_SESSION['current_player'])) {
+            $this->currentPlayer = 0;
+            $_SESSION['current_player'] = $this->currentPlayer;
+        }
+        $this->currentPlayer = $_SESSION['current_player'];
 
         $this->players = [
             $humanPlayer,
@@ -42,6 +46,7 @@ class GameController
     public function changePlayer(): void
     {
         $this->currentPlayer = !$this->currentPlayer;
+        $_SESSION['current_player'] = $this->currentPlayer;
     }
 
     public function getPlayer(): AbstractPlayer
