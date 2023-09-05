@@ -1,22 +1,17 @@
 <?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ALL);
+
 require 'vendor/autoload.php';
 
 session_start();
 
 use App\Controllers\GameController;
+use App\Controllers\Slot\NullSlot;
 
 $gameController = new GameController();
-
-if(isset($_REQUEST['reset']) && $_REQUEST['reset'] == 1)
-{
-    $_SESSION = array();
-} else {
-    $position = $_REQUEST['x'];
-    if(!(!isset($_SESSION['slots'][$position]) && !empty($_SESSION['slots'][$position]))) {
-        $gameController->slots[$position]?->setIcon($gameController->getPlayer()?->getIcon());
-        $_SESSION['slots'][$position] = $gameController->slots[$position]?->getIcon();
-    }
-}
+$gameController->play($gameController->getPlayer(), new NullSlot());
 $gameController->changePlayer();
 
 ?>
@@ -34,8 +29,13 @@ $gameController->changePlayer();
         <div class="grid content-center">
             <a class="text-5xl text-center" href="?reset=1">Reset Game</a>
             <h1 class="text-5xl text-center">Jogo da Velha</h1>
-            <h1 class="text-2xl text-center"><?php echo $gameController->getPlayer()?->getName(); ?></h1>
-            <div class="flex justify-center">
+            <h1 class="text-2xl text-center <?php echo isset($_SESSION['winner']) ? 'hidden' : ''; ?>">
+                <?php 
+                    echo 'Jogador atual: '. $gameController->getPlayer()?->getName() . '<br>'; 
+                    echo 'Ícone: ' . $gameController->getPlayer()?->getIcon() . '<br>'; 
+                ?>
+            </h1>
+            <div class="flex justify-center <?php echo isset($_SESSION['winner']) ? 'hidden' : ''; ?>">
                 <div class="p-5 m-5">
                     <div class="flex">
                         <a href="?x=0">
@@ -142,6 +142,14 @@ $gameController->changePlayer();
                             </div>
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center <?php echo !isset($_SESSION['winner']) ? 'hidden' : ''; ?>">
+                <div class="p-5 m-5">
+                    <?php 
+                        echo $gameController->getSpecificPlayer($_SESSION['winner'])->getName();
+                    ?>
                 </div>
             </div>
         </div>

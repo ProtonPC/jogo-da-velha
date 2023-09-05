@@ -4,6 +4,7 @@ namespace App\Controllers\Player;
 
 use App\Controllers\Slot\AbstractSlot;
 use App\Interfaces\PlayerStateInterface;
+use App\Utils\Constants;
 
 abstract class AbstractPlayer
 {
@@ -13,6 +14,7 @@ abstract class AbstractPlayer
     protected bool $isWinner;
 
     public abstract function draw(AbstractSlot $slot);
+    
     public function getState(): PlayerStateInterface
     {
         return $this->state;
@@ -38,8 +40,25 @@ abstract class AbstractPlayer
         return $this->isWinner;
     }
 
-    public function checkWinner($slots): void
+    public function checkWinner(): bool
     {
-        // implementação bem louca;
+        foreach(Constants::POSSIBLE_WINS() as $possibility)
+        {
+            if(
+                isset($_SESSION['slots'][$possibility[0]])
+                && isset($_SESSION['slots'][$possibility[1]])
+                && isset($_SESSION['slots'][$possibility[2]])
+            ) {
+                if ($_SESSION['slots'][$possibility[0]] === $this->icon
+                    && $_SESSION['slots'][$possibility[1]] === $this->icon
+                    && $_SESSION['slots'][$possibility[2]] === $this->icon)
+                {
+                    $this->isWinner = true;
+                    return true;
+                }
+            }
+        }
+        $this->isWinner = false;
+        return false;
     }
 }

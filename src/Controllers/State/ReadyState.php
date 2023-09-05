@@ -3,7 +3,6 @@
 namespace App\Controllers\State;
 
 use App\Controllers\Player\AbstractPlayer;
-use App\Controllers\Slot\AbstractSlot;
 use App\Interfaces\PlayerStateInterface;
 
 class ReadyState implements PlayerStateInterface
@@ -15,10 +14,9 @@ class ReadyState implements PlayerStateInterface
         $this->description = "Player ready";
     }
 
-    public function handle(AbstractPlayer $player, AbstractSlot $slot): void
+    public function handle(AbstractPlayer $player): void
     {
         $player->setState(new ReadyState());
-        
     }
 
     public function getDescription(): string

@@ -5,9 +5,8 @@ namespace App\Controllers\Slot;
 
 class NullSlot extends AbstractSlot
 {
-   public function __construct(int $x) 
+   public function __construct() 
     {
-        $this->x = $x;
         $this->icon = "";
     }
 }

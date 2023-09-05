@@ -12,6 +12,7 @@ class HumanPlayer extends AbstractPlayer
         $this->name = $name;
         $this->icon = "X";
     }
+    
     public function draw(AbstractSlot $slot){
         $slot->setIcon($this->icon);
     }

@@ -3,7 +3,6 @@
 namespace App\Controllers\State;
 
 use App\Controllers\Player\AbstractPlayer;
-use App\Controllers\Slot\AbstractSlot;
 use App\Interfaces\PlayerStateInterface;
 
 class FinishedState implements PlayerStateInterface
@@ -15,7 +14,7 @@ class FinishedState implements PlayerStateInterface
         $this->description = "Finish him";
     }
     
-    public function handle(AbstractPlayer $player, AbstractSlot $slot): void
+    public function handle(AbstractPlayer $player): void
     {
         $player->setState(new FinishedState());
     }

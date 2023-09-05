@@ -5,8 +5,8 @@ namespace App\Controllers;
 use App\Controllers\Player\AbstractPlayer;
 use App\Controllers\Player\ComputerPlayer;
 use App\Controllers\Player\HumanPlayer;
-use App\Controllers\Slot\AbstractSlot;
 use App\Controllers\Slot\NullSlot;
+use App\Controllers\State\FinishedState;
 use App\Controllers\State\ReadyState;
 
 class GameController
@@ -39,8 +39,24 @@ class GameController
         ];
     }
     
-    public function play(AbstractPlayer $player, AbstractSlot $slot): void
+    public function play(AbstractPlayer $player): void
     {
+        if(isset($_REQUEST['reset']) && $_REQUEST['reset'] == 1)
+        {
+            $_SESSION = array();
+        } else {
+            $position = $_REQUEST['x'];
+            if(!(!isset($_SESSION['slots'][$position]) && !empty($_SESSION['slots'][$position]))) {
+                $this->slots[$position]?->setIcon($player?->getIcon());
+                $_SESSION['slots'][$position] = $this->slots[$position]?->getIcon();
+            }
+        }
+
+        if ($player->checkWinner())
+        {
+            $player->setState(new FinishedState());
+            $_SESSION['winner'] = intval($this->players[$_SESSION['current_player']] instanceof HumanPlayer);
+        }
     }
     
     public function changePlayer(): void
@@ -52,5 +68,10 @@ class GameController
     public function getPlayer(): AbstractPlayer
     {
         return $this->players[$this->currentPlayer];
+    }
+
+    public function getSpecificPlayer(int $position): AbstractPlayer
+    {
+        return $this->players[$position];
     }
 }
