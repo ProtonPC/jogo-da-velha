@@ -56,9 +56,17 @@ abstract class AbstractPlayer
                     $this->isWinner = true;
                     return true;
                 }
-            }
+            } 
         }
         $this->isWinner = false;
+        return false;
+    }
+
+    public function isDraw(int $qtdSlots) 
+    {
+        if(isset($_SESSION['slots']))
+            return (count($_SESSION['slots']) == $qtdSlots) && !$this->isWinner;
+    
         return false;
     }
 }

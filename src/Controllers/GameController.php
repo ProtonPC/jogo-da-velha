@@ -57,6 +57,14 @@ class GameController
             $player->setState(new FinishedState());
             $_SESSION['winner'] = intval($this->players[$_SESSION['current_player']] instanceof HumanPlayer);
         }
+
+        if ($player->isDraw(count($this->slots)))
+        {
+            foreach ($this->players as $p){
+                $p->setState(new FinishedState());
+            }
+            $_SESSION['isDraw'] = 'EMPATE';
+        }
     }
     
     public function changePlayer(): void
