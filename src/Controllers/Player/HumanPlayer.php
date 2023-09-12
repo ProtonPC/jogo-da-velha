@@ -10,7 +10,7 @@ class HumanPlayer extends AbstractPlayer
     public function __construct(string $name)
     {
         $this->name = $name;
-        $this->icon = "X";
+        $this->icon = "A";
     }
     
     public function draw(AbstractSlot $slot){

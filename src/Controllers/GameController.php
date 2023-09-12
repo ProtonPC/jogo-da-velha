@@ -8,6 +8,8 @@ use App\Controllers\Player\HumanPlayer;
 use App\Controllers\Slot\NullSlot;
 use App\Controllers\State\FinishedState;
 use App\Controllers\State\ReadyState;
+use App\Utils\CustomHelper;
+
 
 class GameController
 {
@@ -24,7 +26,7 @@ class GameController
         $computerPlayer = new ComputerPlayer();
         $computerPlayer->setState(new ReadyState());
 
-        $humanPlayer = new HumanPlayer("Oponente do Daniel");
+        $humanPlayer = new HumanPlayer("Alan");
         $humanPlayer->setState(new ReadyState());
 
         if (!isset($_SESSION['current_player'])) {
@@ -46,7 +48,7 @@ class GameController
             $_SESSION = array();
         } else {
             $position = $_REQUEST['x'];
-            if(!(!isset($_SESSION['slots'][$position]) && !empty($_SESSION['slots'][$position]))) {
+            if(CustomHelper::isSlotEmpty($position)) {
                 $this->slots[$position]?->setIcon($player?->getIcon());
                 $_SESSION['slots'][$position] = $this->slots[$position]?->getIcon();
             }
@@ -55,8 +57,9 @@ class GameController
         if ($player->checkWinner())
         {
             $player->setState(new FinishedState());
-            $_SESSION['winner'] = intval($this->players[$_SESSION['current_player']] instanceof HumanPlayer);
+            $_SESSION['winner'] = intval($this->players[$_SESSION['current_player']] instanceof ComputerPlayer);
         }
+
 
         if ($player->isDraw(count($this->slots)))
         {

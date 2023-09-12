@@ -11,9 +11,10 @@ use App\Controllers\Slot\NullSlot;
 
 
 $gameController = new GameController();
-$gameController->play($gameController->getPlayer(), new NullSlot());
-$gameController->changePlayer();
-
+$gameController->play($gameController->getPlayer());
+if (!isset($_SESSION['winner']) && !isset($_SESSON['isDraw'])){ 
+    $gameController->changePlayer();
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,22 @@ $gameController->changePlayer();
         <div class="grid content-center">
             <a class="text-5xl text-center" href="?reset=1">Reset Game</a>
             <h1 class="text-5xl text-center">Jogo da Velha</h1>
-            <h1 class="text-2xl text-center <?php echo isset($_SESSION['winner']) ? 'hidden' : ''; ?>">
+            
+            <div class="flex justify-center <?php echo !isset($_SESSION['winner']) ? 'hidden' : ''; ?>">
+                <div class="p-5 m-5">
+                    <?php 
+                        echo "Parabens " .$gameController?->getSpecificPlayer($_SESSION['winner'] ?? 0)->getName();
+                    ?>
+                </div>
+            </div>
+            <div class="flex justify-center <?php echo !isset($_SESSION['isDraw']) ? 'hidden' : ''; ?>">
+                <div class="p-5 m-5">
+                    <?php 
+                        echo "Jogo empatado";
+                        ?>
+                </div>
+            </div>
+            <h1 class="text-2xl text-center <?php echo (isset($_SESSION['winner']) || isset($_SESSION['isDraw'])) ? 'hidden' : ''; ?>">
                 <?php 
                     echo 'Jogador atual: '. $gameController->getPlayer()?->getName() . '<br>'; 
                     echo 'Ícone: ' . $gameController->getPlayer()?->getIcon() . '<br>'; 
@@ -147,20 +163,7 @@ $gameController->changePlayer();
                 </div>
             </div>
 
-            <div class="flex justify-center <?php echo !isset($_SESSION['winner']) ? 'hidden' : ''; ?>">
-                <div class="p-5 m-5">
-                    <?php 
-                        echo $gameController->getSpecificPlayer($_SESSION['winner'])->getName();
-                    ?>
-                </div>
-            </div>
-            <div class="flex justify-center <?php echo !isset($_SESSION['isDraw']) ? 'hidden' : ''; ?>">
-                <div class="p-5 m-5">
-                    <?php 
-                        echo "EMPATE que droga";
-                        ?>
-                </div>
-            </div>
+            
         </div>
     </div>
 </body>
